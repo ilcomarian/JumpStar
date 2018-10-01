@@ -1,0 +1,91 @@
+<p id="notice"><%= notice %></p>
+<div class="project-container">
+  <div class="project-main"> 
+
+ <%= form_for([@project, @review]) do |f| %>
+  <% if @review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@review.errors.count, "error") %> prohibited this review from being saved:</h2>
+
+      <ul>
+      <% @review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+<div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_area :title %>
+
+    <%= f.label :review %><br>
+    <%= f.text_area :review %>
+
+    <div id="star-rating"></div>
+</div>
+<div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>
+
+<div class="project-side">
+    <table>
+    <strong>Status</strong><br>
+    <li><span class="project-status" id="project-status"><%= @project.project_status %></span></li>
+    <br>
+    <strong>Due Date</strong>
+      <% if @project.due_date_less_then_month %>
+        <li>&lt; 1 month</li>
+      <% end %>
+      <% if @project.due_date_one_month %>
+        <li>1 month</li>
+      <% end %>
+      <% if @project.due_date_three_month %>
+        <li>&gt; 3 months</li>
+      <% end %>
+      <% if @project.due_date_plus_three_month %>
+        <li>3+ months</li>
+      <% end %>
+    <br>
+    <strong>Platform</strong>
+      <% if @project.plattform_desktop %>
+        <li>Desktop</li>
+      <% end %>
+      <% if @project.plattform_mobile %>
+        <li>Mobile</li>
+      <% end %>
+      <% if @project.platform_tablet %>
+        <li>Tablet</li>
+      <% end %>
+    <br>
+    <strong>Assets</strong>
+      <% if @project.assets_text %>
+        <li>Text</li>
+      <% end %>
+      <% if @project.assets_images %>
+        <li>Images</li>
+      <% end %>
+      <% if @project.assets_videos %>
+        <li>Videos</li>
+      <% end %>
+      <% if @project.assets_audio %>
+        <li>Audio</li>
+      <% end %>
+      <% if @project.assets_database %>
+        <li>Database</li>
+      <% end %>
+    <br>
+    <strong>Page(s)</strong>
+      <% if @project.pages_landing_pages %>
+        <li>Landing Page</li>
+      <% end %>
+      <% if @project.pages_two_pages %>
+        <li>2+ Pages</li>
+    <% end %>
+    <br>
+  
+  </table>
+  </div>
+</div>

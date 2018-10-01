@@ -1,0 +1,180 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ * 
+
+ */
+ 
+ @import 'semantic-ui';
+ @import './partials/*';
+ @import 'scaffolds';
+ @import 'welcome';
+ @import 'projects';
+ @import 'messages';
+
+body {
+    font-family: $font;
+    font-size: 1.25em;
+    line-height: 1.3;
+}
+header{
+    @include flexbox(flex, column, center, center);
+    background-color:white;
+    position: fixed;
+    left: 0vw;
+    z-index: 1;
+    top: 0;
+    height: 25vh;
+}
+
+.top-nav{
+    @include flexbox(flex, row, center, space-between);
+    width: 100%;
+    font-weight: bold;
+    padding: 0 1vw;
+}
+
+a.active {
+    color: green;
+}
+
+.navigation-bar{
+    @include flexbox(flex, row, center, space-evenly);
+    width: 100vw;
+    height: 3vh;
+    letter-spacing: 1px;
+    font-size: 0.9em;
+    font-weight: bold;
+    background-color: #34374D;
+
+    .link {
+        color: white;
+    }
+
+    a.link.active {
+        color: lightgreen;
+    }
+
+    a:hover{
+        color: lightgreen;
+        background-color: transparent;
+    }
+    
+}
+
+a:hover{
+    color: green;
+    background-color: transparent;
+}
+
+.logo {
+    width: 15vh;
+    position: relative;
+    bottom: 10px;
+}
+
+.links{
+    @include flexbox(flex,row, center, space-between);
+    width: 25vw;
+
+}
+
+.log-link{
+    @include flexbox(flex,row, center, space-between);
+}
+
+.main-container{
+    @include flexbox(flex, column, center, center);
+    width: 100%;
+    position: relative;
+    top: 20vh;
+    margin-bottom: 10vh;
+    .how-it-works{
+        margin-top: -800px; 
+       h1{
+        color: green;
+      }
+    }
+   
+    button{
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-left: 100px;
+        cursor: pointer;
+    }
+
+}
+
+.card-container {
+    @include flexbox(flex, row, stretch, flex-start);
+    flex-wrap: wrap;
+    width: 100vw;
+}
+
+.card-profile {
+    width: 30vw;
+    margin: 2vw 2vh;
+    border: 1px solid lightgray;
+    border-radius: 5px 5px 5px 5px;
+    padding: 1vh 1vw;
+    .image{
+        @include flexbox(flex, row, center, center);
+        .profile-pic {
+            width: 20vw;
+            height: auto;
+        }
+    }
+}
+
+.show-profile{
+    @include flexbox(flex, row, flex-start, flex-start);
+    width: 100%;
+}
+
+.proj-profile {
+    @include flexbox(flex, column, flex-start, flex-start);
+    margin-left: 2vw;
+}
+
+select {
+    background-color: white;
+}
+
+.ui.card:first-child{
+    margin-top: 0px;
+}
+
+.ui.card:last-child {
+    margin-top: -1px;
+}
+
+.name-title{
+    font-weight: bold;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    padding: 1vh;
+    width: 100%;
+    color: white;
+    font-size: 0.9em;
+    letter-spacing: 1px;
+    background-color: $blue;
+    text-align: center;
+}

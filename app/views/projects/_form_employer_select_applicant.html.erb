@@ -1,0 +1,14 @@
+<% if @project.aplications.length > 0 %>
+    <div id="applications-form">
+        <% if @project.developer_id %>
+
+        <% else %>
+            <h3>Applicants:</h3>
+
+            <%= form_with(model: @project) do |form| %>
+               <p><%= form.collection_radio_buttons :developer_id, @project.aplications, :developer_id, :developer_name %></p>
+                <%= form.submit 'Confirm' %>
+            <% end %>
+        <% end %>
+    </div>
+<% end %>

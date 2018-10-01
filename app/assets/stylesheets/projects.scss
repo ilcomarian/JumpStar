@@ -1,0 +1,78 @@
+.top-buttons{
+    @include flexbox(flex, row, center, space-between);
+    width: 90%;
+}
+
+.projects{
+    @include flexbox(flex, column, flex-start, center);
+    width: 90%;
+}
+
+form {
+    @include flexbox(flex, column, center, space-around);
+    width: 100%;
+}
+.project-container{
+    @include flexbox(flex, row, flex-start, space-evenly);
+}
+
+.project-filter{
+    @include flexbox(flex, row, flex-start, space-evenly);
+    width: 90%;
+    padding: 1vh 1vw;
+    border: 1px solid black;
+    border-radius: 10px 10px 10px 10px;
+    background-color: $light-green;
+    font-size: 0.8em;
+}
+
+.project-main{
+    width: 50vw;
+    margin-right: 10vw;
+}
+
+.project-appdev {
+    background-color: $light-green;
+    padding: 1vh 2vw 2vh 2vh;
+}
+
+.project-review {
+    border: 1px solid $blue;
+    margin: 1vh 0;
+    padding: 1vh 1vw;
+}
+
+.project-side {
+    background-color: $light-green;
+    padding: 1vh 2vw 2vh 2vh;
+    width: 20vw;
+    font-size: 0.8em;
+}
+
+.project-list {
+    @include flexbox(flex, column, flex-start, center);
+    width: 100%;
+    padding: 0vh 5vw;
+    margin-bottom: 10vh;
+}
+
+li {
+    list-style-type: none;
+}
+
+.title {
+    font-size: 1.25em;
+}
+
+.small {
+    font-size: 0.8em;
+}
+
+tr:nth-child(odd){
+    background-color: $light-green;
+    width: 100%;
+}
+
+tr{
+    vertical-align: top;
+}

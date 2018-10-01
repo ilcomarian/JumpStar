@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+<div class="card-container">
+  <% @employers.each do |employer| %>
+    <div class="card-profile">
+      
+      <div class="image">
+        <%if employer.image.attached? %>
+          <%= image_tag (employer.image)%>
+        <% end %>
+      </div>
+
+      <div class="content">
+        <%= link_to employer.full_name, employer_path(employer), class: 'header' %>
+        
+        <div class="meta">
+          <%= employer.created_at%>
+        </div>
+
+        <div class="description">
+          <%= employer.company_name%>
+        </div>
+
+        <div class="extra content">
+          
+          <%= mail_to employer.email, '<i class="far fa-envelope"></i> Email'.html_safe + ' ' + employer.first_name %>
+          <br/>
+          <% if current_developer %>
+            <%= link_to '<i class="far fa-comments"></i> Message'.html_safe + ' ' + employer.first_name, chat_messages_path(employer) %>
+          <% end %>
+          <br/>
+          <%= link_to 'More Info', employer_path(employer) %>
+        </div>
+      </div>  
+    </div>
+    <% end %>   
+</div>

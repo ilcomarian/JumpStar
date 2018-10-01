@@ -1,0 +1,117 @@
+<p id="notice"><%= notice %>
+<% if current_employer && current_employer.id == @project.employer_id %>
+  <h3><%= link_to '<i class="fas fa-edit"></i> Edit Project'.html_safe, edit_project_path(@project) %></h3> 
+<%end%>
+<div class="project-container">
+ 
+  <div class="project-main">
+    <strong>Project</strong>  <%= @project.project_name %>
+    <br>
+
+    <strong>Posted By</strong>  <%= link_to @project.employer.full_name, employer_path(@project.employer_id) %>
+    <br>
+    <strong>Description</strong>
+    <br>
+    <%= @project.project_description %>
+    <br>
+  
+      <% if @project.developer_id%>
+      <strong>Developer</strong> <a href="/developers/<%= @project.developer_id %>"><%= @project.developer.full_name %></a>
+    <% end%>
+    <br>
+  
+  <div class="project-appdev">
+     <% if current_employer and @project.employer_id == current_employer.id %>
+      <%# Employers: project owners choose the applicant  %>
+      <%= render(partial: 'projects/form_employer_select_applicant', object: @project) %>
+    <% elsif current_developer and @project.project_status == "open" and !@project.aplications.where(developer: current_developer).exists? %>
+      <%# Developers: New application for devs that haven't applied %>
+      <%= render(partial: 'projects/form_developer_apply', object: @project) %>         
+    <% end %>
+  </div>
+
+   <% if current_employer and @project.employer_id == current_employer.id and @project.project_status == "in process" %>
+      <p id='please_confirm'>Please confirm that the project is complete.</p> 
+     <a data-remote="true" href='/confirm/<%= @project.id%>'>Confirm</a> 
+    <% end %>
+
+  <div class="project-review">
+  <strong>Project Review</strong>
+    <br>
+    <%= link_to '<i class="fas fa-pen"></i> Write a Review'.html_safe, new_project_review_path(@project),class: "small" %>
+    <br>
+    <table style= "width: 100%">
+
+      <% @reviews.each do |review| %>
+        <tr>
+          <td>
+            <strong><%= review.title %></strong>
+            <br>
+            <%= review.review %>
+          </td>
+        </tr>
+      <% end %>
+      </table>
+    </div>
+
+  </div>
+
+  <%# Sidebar %>
+  <div class="project-side">
+    <table>
+    <strong>Status</strong><br>
+    <li><span class="project-status" id="project-status"><%= @project.project_status %></span></li>
+    <br>
+    <strong>Due Date</strong>
+      <% if @project.due_date_less_then_month %>
+        <li>&lt; 1 month</li>
+      <% end %>
+      <% if @project.due_date_one_month %>
+        <li>1 month</li>
+      <% end %>
+      <% if @project.due_date_three_month %>
+        <li>&gt; 3 months</li>
+      <% end %>
+      <% if @project.due_date_plus_three_month %>
+        <li>3+ months</li>
+      <% end %>
+    <br>
+    <strong>Platform</strong>
+      <% if @project.plattform_desktop %>
+        <li>Desktop</li>
+      <% end %>
+      <% if @project.plattform_mobile %>
+        <li>Mobile</li>
+      <% end %>
+      <% if @project.platform_tablet %>
+        <li>Tablet</li>
+      <% end %>
+    <br>
+    <strong>Assets</strong>
+      <% if @project.assets_text %>
+        <li>Text</li>
+      <% end %>
+      <% if @project.assets_images %>
+        <li>Images</li>
+      <% end %>
+      <% if @project.assets_videos %>
+        <li>Videos</li>
+      <% end %>
+      <% if @project.assets_audio %>
+        <li>Audio</li>
+      <% end %>
+      <% if @project.assets_database %>
+        <li>Database</li>
+      <% end %>
+    <br>
+    <strong>Page(s)</strong>
+      <% if @project.pages_landing_pages %>
+        <li>Landing Page</li>
+      <% end %>
+      <% if @project.pages_two_pages %>
+        <li>2+ Pages</li>
+    <% end %>
+    
+  </table>
+  </div>
+</div>

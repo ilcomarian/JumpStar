@@ -1,0 +1,74 @@
+<p id="notice"><%= notice %></p>
+<%= link_to '<i class="fas fa-edit"></i> Edit Profile'.html_safe, '/employers/edit'%>
+<div class="show-profile">
+<div class="ui card">
+        <div class="image">
+          <%if @employer.image.attached? %>
+            <%= image_tag (@employer.image)%>
+          <% end %>
+        </div>
+
+        <div class="content">
+          <div class="header">
+            <%=@employer.full_name%>
+          </div>
+
+          <div class="meta">
+            <%= @employer.created_at%>
+          </div>
+
+          <div class="content">
+            <% if !@employer.company_name.nil? %>
+              <strong>Company Name</strong> <%= @employer.company_name%>
+              <br />
+            <% end %>
+            <% if !@employer.company_url.nil? %>
+              <strong>Company Site</strong> <%= @employer.company_url%>
+              <br />
+            <% end %>
+            <strong>Contact</strong> <%= @employer.email%>
+          </div>
+
+          <div class="description">
+            <% if !@employer.description.nil? %>
+              <strong>Description</strong> <%= @employer.description%>
+              <br />
+            <% end %>
+          </div>
+  
+          <div class="extra content">
+            <% if !@employer.city.nil? %>
+              <strong>City</strong> <%= @employer.city%>
+              <br />
+            <% end %>
+            <% if !@employer.zip.nil? %>
+              <strong>Zip</strong> <%= @employer.zip%>
+              <br />
+            <% end %>
+          </div>
+        </div>   
+      </div>
+
+  <div class="proj-profile">
+    <h1>Projects</h1>
+    <span><strong>Open</strong></span>
+    <%@open_projects.each do |open_project| %>
+      <li><a href='/projects/<%=open_project.id%>'><%= open_project.project_name%></a></li>
+    <%end%>
+    <br>
+    <span><strong>In Process</strong></span>
+    <%@inprogress_projects.each do |inprogress_project| %>
+      <li><a href='/projects/<%=inprogress_project.id%>'><%= inprogress_project.project_name%></a></li>
+    <%end%>
+    <br>
+    <% if !@complete_projects.each.nil? %>
+      <span><strong>Complete</strong></span>
+      <%@complete_projects.each do |complete_project| %>
+        <li><a href='/projects/<%=complete_project.id%>'><%= complete_project.project_name%></a></li>
+      <%end%>
+    <% end %>
+
+  </div>
+</div>
+
+ 

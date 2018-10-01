@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<div class="card-container">
+    <% @developers.each do |developer| %>
+      <div class="card-profile">
+
+        <div class="image">
+          <%if developer.image.attached? %>
+            <%= image_tag (developer.image)%>
+          <% end %>
+        </div>
+
+        <div class="content">
+            <%= link_to developer.full_name, developer_path(developer), class:"name-title" %></a>
+          
+          <div class="meta">
+            <%= developer.created_at%>
+          </div>
+
+          <div class="description">
+            <%= developer.description%>
+          </div>
+          
+          <div class="extra content">
+            
+              <%= mail_to developer.email, '<i class="far fa-envelope"></i> Email'.html_safe + ' ' + developer.first_name %>
+              <br>
+              <% if current_employer %>
+              <%= link_to '<i class="far fa-comments"></i> Message'.html_safe + ' ' + developer.first_name, chat_messages_path(developer) %>
+            <% end %>
+            <br/>
+            <%= link_to 'More Info', developer_path(developer) %>
+          </div>
+        </div>
+        </div>  
+    <% end %>   
+</div>
+
+

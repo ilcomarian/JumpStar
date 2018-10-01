@@ -1,0 +1,84 @@
+<p id="notice"><%= notice %></p>
+<%= link_to '<i class="fas fa-edit"></i> Edit Profile'.html_safe, '/developers/edit'%>
+<div class="show-profile">
+      <div class="ui card">
+
+        <div class="image">
+          <%if @developer.image.attached? %>
+            <%= image_tag (@developer.image),class:"profile-pic"%>
+          <% end %>
+        </div>
+
+        <div class="content">
+          <div class="header">
+            <%=@developer.full_name%>
+          </div>
+
+          <div class="meta">
+            <%= @developer.created_at%>
+          </div>
+ 
+          <div class="description">
+            <% if !@developer.description.nil? %>
+              <strong>Description</strong> <%= @developer.description %>
+              <br>
+            <% end %>
+
+            <% if !@developer.email.nil? %>
+              <strong>Email</strong> <%= @developer.email %>
+              <br />
+            <% end %>
+
+            <% if !@developer.resume_url.nil? %>
+              <strong>Resume</strong> <%= @developer.resume_url %>
+              <br />
+            <% end %>
+
+            <% if !@developer.github_url.nil? %>
+              <strong>Github</strong> <%= @developer.github_url %>
+              <br />
+            <% end %>
+
+            <% if !@developer.linkedin_url.nil? %>
+              <strong>Linkedin</strong> <%= @developer.linkedin_url %>
+              <br />
+            <% end %>
+
+            <% if !@developer.portfolio_url.nil? %>
+              <strong>Portfolio</strong> <%= @developer.portfolio_url %>
+              <br />
+            <% end %>
+
+            <% if !@developer.city.nil? %>
+              <strong>City</strong> <%= @developer.city%>
+            <br>
+            <% end %>
+
+            <% if !@developer.zip.nil? %>
+              <strong>Zip</strong> <%= @developer.zip %> 
+            <% end %>
+
+          </div>
+        </div>  
+  </div>
+ <div class="proj-profile">
+    <h1>Projects</h1>
+    <span><strong>Open</strong></span>
+    <%@open_projects.each do |open_project| %>
+      <li><a href='/projects/<%=open_project.id%>'><%= open_project.project_name%></a></li>
+    <%end%>
+    <br>
+    <span><strong>In Process</strong></span>
+    <%@inprogress_projects.each do |inprogress_project| %>
+      <li><a href='/projects/<%=inprogress_project.id%>'><%= inprogress_project.project_name%></a></li>
+    <%end%>
+    <br>
+    <% if !@complete_projects.each.nil? %>
+      <span><strong>Complete</strong></span>
+      <%@complete_projects.each do |complete_project| %>
+        <li><a href='/projects/<%=complete_project.id%>'><%= complete_project.project_name%></a></li>
+      <%end%>
+    <% end %>
+
+  </div>
+</div>
